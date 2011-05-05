@@ -1,0 +1,21 @@
+<%
+def project_custom_field_config(option_name, field_format, current_value)
+  label = content_tag(:label, l("hoptoad_server_#{option_name}_label".to_sym))
+  data = ProjectCustomField.all(:conditions => {:field_format => field_format})
+  unless data.empty?
+    select = select_tag("settings[#{option_name}]",
+                        content_tag(:option, '') +
+                        options_from_collection_for_select(data, :id, :name, current_value))
+  else
+    select = link_to(l(:hoptoad_server_missing_custom_field, :field_format => field_format.capitalize),
+                     :controller => 'custom_fields', :action => 'index', :tab => 'ProjectCustomField')
+  end
+  return content_tag(:p, label + select)
+end
+%>
+
+<fieldset>
+  <%= content_tag(:p, l(:hoptoad_server_settings_help)) %>
+
+  <%= project_custom_field_config('project_key_custom_field_id', 'string', @settings['project_key_custom_field_id'].to_i) %>
+</fieldset>

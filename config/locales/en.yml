@@ -1,0 +1,4 @@
+en:
+  hoptoad_server_project_key_custom_field_id_label: "Project custom field for the API key"
+  hoptoad_server_settings_help: "Configure a custom field below to support per-project api keys."
+  hoptoad_server_missing_custom_field: "Missing a '{{field_format}}' Custom Field for Projects.  Please create one first."
